@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+
+
+
+</head>
+
+<body>
+
+    <div id="root">
+
+        <h2> All tasks</h2>
+
+        <ul>
+            <li v-for="task in tasks">
+                <input type="checkbox" v-model="task.completed" @click="toggleComplete(task)" :id="task.description">
+                <label :for="task.description" v-text="task.description"></label>
+            </li>
+        </ul>
+
+        <h1> Incomplete Tasks</h1>
+
+        <ul>
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+
+
+        </ul>
+
+        <h1> Completed tasks</h1>
+
+        <ul>
+
+            <li v-for="tasks in completedTasks" v-text="tasks.description"></li>
+
+        </ul>
+
+    </div>
+
+
+
+
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+
+
+            el: "#root",
+
+            data: {
+                tasks: [{
+                    description: "Go to the store",
+                    completed: true
+                }, {
+                    description: "Finish screencast",
+                    completed: false
+                }, {
+                    description: "Make donation",
+                    completed: false
+                }, {
+                    description: "Clear inbox",
+                    completed: false
+                }, {
+                    description: "Make Dinner",
+                    completed: false
+                }, {
+                    description: "Clean Room",
+                    completed: true
+                }]
+            },
+
+
+
+
+
+            computed: {
+                incompleteTasks() {
+                    return this.tasks.filter(task => !task.completed);
+
+                    // or a maneira mais antiga
+
+                    // this.tasks.filter(function (task) {
+                    //     return ! task.completed;
+                    // })
+
+                },
+
+                completedTasks() {
+                    return this.tasks.filter(task => task.completed);
+                },
+
+
+            },
+
+            methods: {
+                toggleComplete(task) {
+                    task.completed = !task.completed;
+                }
+            }
+
+
+
+        });
+    </script>
+</body>
+
+</html>
