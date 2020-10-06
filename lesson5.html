@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+
+    <style>
+        .is-loading {
+            background: red;
+        }
+        
+        .disabled {
+            background: grey;
+        }
+        /* did the same on the console to update color blue with classapp.className = "color: blue"   */
+    </style>
+
+</head>
+
+<body>
+
+    <div id="root">
+        <button v-bind:title="title"> Hover over me</button>
+
+    </div>
+
+    <div id="root-2">
+        <!-- <button :class=`{`is-loading`: isLoading }` @click="toggleClass"> Toggle me </button> instead of this we cna use the disabled: -->
+        <button v-bind:disabled="isDisabled" @click="disableMe">Disable when clicked</button>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+
+
+            el: "#root",
+
+            data: {
+                title: "now the tittle is being read throug js"
+            }
+
+        });
+
+        const classapp = new Vue({
+
+            el: "#root-2",
+
+            data: {
+                // isLoading = false esta usei sem o disabled
+                isDisabled: false
+            },
+
+            methods: {
+                // toggleClass() {
+                //     this.isLoading = true; esta tb usei sem o disabled:
+                // }
+                disableMe() {
+                    this.isDisabled = true;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
